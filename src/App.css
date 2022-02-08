@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-logo {
@@ -9,30 +15,92 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+      animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+      transform: rotate(360deg);
   }
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+ul {
+  text-align: left;
+  width: 400px;
+}
+
+
+button {
+  height: 40px;
+  margin: 4px;
+  padding: 4px;
+  font-size: 24px;
+}
+
+/* header styling */
+.header{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  background-color: rgb(134, 132, 129);
+}
+
+input {
+  height: 27px;
+  margin: 24px;
+  padding: 4px;
+  font-size: 24px;
+  border-radius: 5px;
+  width: 35%;
+}
+
+h1{
+  margin-left: 20px;
+}
+
+/* Table styling */
+table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 80%;
+  margin: 1rem;
+}
+
+.title {
+  text-align: center;
+}
+
+th{
+  text-align:left;
+  font-size: x-large;
+  border-collapse: collapse;
+  background-color: #343a40;
+  color: #fff;
+  
+}
+
+td{
+  text-align:left;
+  font-size: large;
+  border-collapse: collapse;
+
+}
+
+th,td {
+  border: 1px solid black;
+  padding: 1rem; 
 }
