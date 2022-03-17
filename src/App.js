@@ -1,121 +1,70 @@
-import './App.css';
-import React from "react";
-import PropTypes from "prop-types";
-import pokeman from "./pokeman.json"
-// import styled from "@emotion/styled";
-
+import axios from 'axios';
+import React, { useState } from 'react';
+import Button from './components/Button';
+import InputBox from './components/InputBox'
+import DisplayData from './components/DisplayData';
 
 function App() {
 
-const [filter, filterSet ] = React.useState("");
-const [selectedItem, selectedItemSet] = React.useState(null );
+  const [personData, setPersonData] = useState({
+    fullname: '',
+    address: '',
+    cohort: ''
+  });
+  const baseURL = 'https://62322ad3c5ec1188ad2c3f6d.mockapi.io/ambercontacts/Student';
 
-const PokemanRow = ({ pokeman, onSelect }) => (
-<tr>
-  <td>{pokeman.name.english}</td>
-  <td>{pokeman.type.join(", ")}</td>
-  <td>
-    <button onClick={() => onSelect(pokeman)}
-    >Select!</button>
-  </td>
-</tr>
-);
+  const personAmber = {
+    fullname: personData.fullname,
+    address: personData.address,
+    cohort: personData.cohort
+  };
 
-PokemanRow.propTypes = {
-  pokeman: PropTypes.shape({
-    name: PropTypes.shape({
-      english: PropTypes.string.isRequired,
-    }),
-    type: PropTypes.arrayOf(PropTypes.string.isRequired),
-  }),
-onSelect: PropTypes.func.isRequired,
-}
+  function change(event) {
+    // const currentValue = event.target.value;
+    setPersonData({
+      ...personData,
+      [event.target.name]: event.target.value
+    });
+  }
 
-const PokemanInfo = ({ name, base}) => (
-  <div>
-    <h1>{name.english}</h1>
-    <table>
-      {
-        Object.keys(base).map((key) => (
-          <tr key={key}>
-            <td>{key}</td>
-            <td>{base[key]}</td>
-          </tr>
-        ))
-      }
-    </table>
-  </div>
-)
 
-PokemanInfo.prototype = {
-  name: PropTypes.shape({
-    english: PropTypes.string.isRequired, 
-  }),
-  base: PropTypes.number.isRequired,
-  HP: PropTypes.number.isRequired,
-  Attack: PropTypes.number.isRequired,
-  Defence: PropTypes.number.isRequired,
-  "Sp. Attack": PropTypes.number.isRequired, 
-  "Sp. Defence": PropTypes.number.isRequired, 
-  speed: PropTypes.number.isRequired,
-}
+  function submit(e) {
+    e.preventDefault();
+    // console.log(`Name ${personData.fullname}`);
+    console.log(personData);
+
+    axios.post(baseURL, personAmber).
+      then((response) => {
+        console.log(response.data);
+        // setPersonData(response.data)
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
 
  
-return ( 
-<div className="mainApp">
 
-<div
-style={{
-  margin:"auto",
-  paddingtop: "1rem",
-}}
->
-
-<header className='header'>
-  <h1 className="title"> Car Search</h1>
-<input value={filter} onChange={(evt) => 
-  filterSet(evt.target.value)}/>
-</header>
-
-<div style={{
-  display:"grid",
-  gridTemplateColumns: "60% 30%",
-  gridColumnGap: "1rem",
-}} 
->
-    
-
-<div> 
-<table width="100%">
-<thead>
-  <tr>
-    <th>Name</th>
-    <th>Brand</th>
-    <th>Action</th>
-  </tr>
-</thead> 
-
-<tbody>
-  {pokeman
-  .filter((pokeman) => 
-  pokeman.name.english.toLowerCase().includes(filter.toLowerCase())
-  )
-  .slice(0,6).map(pokeman => (
-    <PokemanRow pokeman={pokeman}
-    key={pokeman.id} onSelect={(pokeman) => selectedItemSet(pokeman)}/>
-  ))}
-      
-</tbody>
-</table>
-
-  </div> 
-  {selectedItem && <PokemanInfo { ...selectedItem} />}
-</div>
-</div>
-</div>
- 
- 
+  return (
+    <div className='bg-gray-300'>
+      <div className="App h-3/4 pt-4 w-full flex justify-center items-center">
+        <div className="bg-white md:w-5/12 w-8/12 flex justify-center items-center rounded-md py-6">
+          <form onSubmit={submit}>
+            <div>
+              <h4 className="flex justify-center font-semibold text-2xl">Registration</h4>
+              <InputBox inputType="Text" name="fullname" inputLabel="Full Name" value={personData.fullname} onChange={change} />
+              <InputBox inputType="Text" name="address" inputLabel="Address" value={personData.address} onChange={change} />
+              <InputBox inputType="Text" name="cohort" inputLabel="Cohort" value={personData.cohort} onChange={change} />
+              <Button>Submit</Button>
+            </div>
+          </form>
+        </div>
+      </div>
+     
+      <div className='h-3/4 flex justify-center mt-12 items-center w-full'>
+        <DisplayData />
+      </div>
+    </div>
   );
-} 
+}
 
-export default App;   
+export default App;

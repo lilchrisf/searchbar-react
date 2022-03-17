@@ -15,7 +15,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-      animation: App-logo-spin infinite 20s linear;
+    width: 100px;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 140px;
+      /* animation: App-logo-spin infinite 20s linear; */
   }
 }
 
@@ -104,3 +108,112 @@ th,td {
   border: 1px solid black;
   padding: 1rem; 
 }
+
+.textarea{
+  width: 270px;
+  margin-left: 25px;
+}
+
+.button{
+  width: 270px;
+  margin-left: 25px;
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.label{
+  width: 270px;
+  margin-left: 25px;
+  font-size: large;
+}
+
+.labeldiv{
+  background-color: rgb(223, 248, 248);
+  width:280px;
+  margin-left: 25px;
+  margin-top:  10px;
+}
+
+.labelbutton{
+  background-color: rgb(75, 233, 88);
+  width:280px;
+  margin-left: 25px;
+  margin-top:  10px;
+}
+
+.lbutton{
+  width: 100px;
+  margin-left: 25px;
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.h1{
+  right: 218px;
+}
+
+.div{
+  text-align: center;
+}
+
+
+
+/* 
+import './App.css'
+import React from "react"
+import Search from './components/Search'
+import Image from './components/Image'
+import Date from './components/Date'
+import Button from './components/Button'
+import Textfield from './components/Textfield'
+import TextArea from './components/TextArea'
+import TextfieldLabel from './components/TextfieldLabel'
+import Textbutton from './components/Textbutton'
+import Props from './components/Props'
+import State from './components/State'
+import Contact from './components/Contact'
+import Table from './components/Table'
+
+
+
+
+function App() {
+return ( 
+<div className="mainApp">
+
+<Search/>
+
+<div className='divbody'>
+
+
+<Button/><br/>
+<Image/>
+<Textfield/>
+<Date/>
+<TextArea/>
+<TextfieldLabel/>
+<Textbutton />
+
+<Props name='Bruce' heroName='Batman'> 
+<p> this is children props</p>
+</Props>
+
+<Props name='Clark' heroName='Supperman'>
+<button>Click</button>
+</Props>
+
+<Props name='Diana' heroName='Wonder Woman'/>
+
+<State/> 
+
+<Contact/>
+<table/>
+</div>
+
+
+
+</div> 
+  );
+} 
+
+export default App;     */
